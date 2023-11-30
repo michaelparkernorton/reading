@@ -3,10 +3,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    /* background-color: black; */
 }
 
 h1 {
-    font-size: 260px;
+    font-size: 180px;
 }
 
 button {
