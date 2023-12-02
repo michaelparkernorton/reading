@@ -1,7 +1,6 @@
 import myText from './kearon.mjs';
 
 let text = myText();
-console.log(text);
 text = text.replace(/\r?\n|\r/g, ' ');
 text = text.replace("-", ' ');
 const array = text.split(' ');
@@ -12,18 +11,25 @@ button.addEventListener('click', rotate);
 let count = 0;
 let time = 0;
 
-console.log(header);
 function rotate() {}
 
 const fast = 50;
 const slow = 1000;
+let pace;
 let speed = fast;
 let mode = "dark";
-
+console.log(new Date);
 let myInterval = setInterval(myTimer, slow);
+
+
 
 function myTimer() {
   header.textContent = array[count];
+  if (array[count] < 5) {
+    pace = 4;
+  } else {
+    pace = array[count].length;
+  }
   if (array[count].includes('\n')) {
     speed = slow;
     clearInterval(myInterval);
@@ -37,7 +43,7 @@ function myTimer() {
   } else {
     speed = fast;
     clearInterval(myInterval);
-    myInterval = setInterval(myTimer, array[count].length * speed);
+    myInterval = setInterval(myTimer, pace * speed);
   }
   if (mode == "light") {
     header.style.color = '#' + count / 4;
@@ -48,6 +54,7 @@ function myTimer() {
   count++;
   if (count == array.length) {
     clearInterval(myInterval);
+    console.log(new Date)
   }
 }
 
