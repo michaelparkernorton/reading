@@ -1,10 +1,5 @@
-// import myText from './kearon.mjs';
-
 let text;
 let array;
-// text = text.replace(/\r?\n|\r/g, ' ');
-// text = text.replace("-", ' ');
-// let array = text.split(' ');
 const startButton = document.querySelector('[data-button]');
 const body = document.querySelector('[data-body]');
 const header = document.querySelector('[data-header]');
