@@ -7,6 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: green;
 }
 
 h1 {
@@ -20,14 +21,13 @@ h1 {
   height: 50vh;
   display: flex;
   justify-content: center;
-  background: blue;
 }
 
 textarea {
   width: 100%;
 }
 
-button {
+.button {
   margin-top: -45vh;
   height: 5vh;
   font-size: 30px;
@@ -35,4 +35,7 @@ button {
   width: 150px;
   font-family: Poppins;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

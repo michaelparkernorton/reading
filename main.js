@@ -1,27 +1,44 @@
-import myText from './kearon.mjs';
+// import myText from './kearon.mjs';
 
-let text = myText();
-text = text.replace(/\r?\n|\r/g, ' ');
-text = text.replace("-", ' ');
-const array = text.split(' ');
-const body = document.querySelector('[data-body]')
+let text;
+let array;
+// text = text.replace(/\r?\n|\r/g, ' ');
+// text = text.replace("-", ' ');
+// let array = text.split(' ');
+const startButton = document.querySelector('[data-button]');
+const body = document.querySelector('[data-body]');
 const header = document.querySelector('[data-header]');
-const button = document.querySelector('[data-button]');
-button.addEventListener('click', rotate);
+const textarea = document.querySelector('[data-textarea]');
+const textareaContainer = document.querySelector('.textarea');
+startButton.addEventListener('click', generate);
 let count = 0;
 let time = 0;
-
-function rotate() {}
 
 const fast = 50;
 const slow = 1000;
 let pace;
 let speed = fast;
-let mode = "dark";
-console.log(new Date);
-let myInterval = setInterval(myTimer, slow);
+let mode = 'dark';
+let myInterval;
 
+if (mode == 'dark') {
+  body.style.backgroundColor = 'black';
+}
 
+function generate() {
+  document.body.requestFullscreen();
+  text = textarea.value;
+  textarea.style.display = 'none';
+  startButton.style.display = 'none';
+  textareaContainer.style.display = 'none';
+  header.style.display = 'block';
+  header.style.color = 'white';
+  text = text.replace(/\r?\n|\r/g, ' ');
+  text = text.replace('-', ' ');
+  array = text.split(' ');
+  console.log(new Date());
+  myInterval = setInterval(myTimer, slow);
+}
 
 function myTimer() {
   header.textContent = array[count];
@@ -36,7 +53,11 @@ function myTimer() {
     myInterval = setInterval(myTimer, speed);
   }
 
-  if (array[count].includes('.') || array[count].includes('?') || array[count].includes(',')) {
+  if (
+    array[count].includes('.') ||
+    array[count].includes('?') ||
+    array[count].includes(',')
+  ) {
     speed = slow;
     clearInterval(myInterval);
     myInterval = setInterval(myTimer, speed);
@@ -45,24 +66,24 @@ function myTimer() {
     clearInterval(myInterval);
     myInterval = setInterval(myTimer, pace * speed);
   }
-  if (mode == "light") {
+  if (mode == 'light') {
     header.style.color = '#' + count / 4;
-  } else if (mode == "dark") {
+  } else if (mode == 'dark') {
     header.style.color = '#' + (999999 - count / 4);
-    body.style.backgroundColor = "black";
+    body.style.backgroundColor = 'black';
   }
   count++;
   if (count == array.length) {
     clearInterval(myInterval);
-    console.log(new Date)
+    console.log(new Date());
   }
 }
 
-console.log(array.length);
-let totalTime = 0;
+// console.log(array.length);
+// let totalTime = 0;
 
-for (let index = 0; index < array.length; index++) {
-  totalTime += array[count].length * 168;
-}
+// for (let index = 0; index < array.length; index++) {
+//   totalTime += array[count].length * 168;
+// }
 
-console.log(totalTime / 1000);
+// console.log(totalTime / 1000);
