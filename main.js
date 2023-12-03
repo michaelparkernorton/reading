@@ -75,6 +75,11 @@ function myTimer() {
   count++;
   if (count == array.length) {
     clearInterval(myInterval);
+    document.exitFullscreen();
+    textarea.style.display = 'block';
+    startButton.style.display = 'flex';
+    textareaContainer.style.display = 'flex';
+    header.style.display = 'none';
     console.log(new Date());
   }
 }
