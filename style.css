@@ -13,6 +13,7 @@ body {
 h1 {
   font-size: 180px;
   display: none;
+  font-family: Poppins;
 }
 
 .textarea {

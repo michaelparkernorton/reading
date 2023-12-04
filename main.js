@@ -1,6 +1,11 @@
 window.addEventListener('click', function () {
   window.location.reload();
 });
+window.onmousemove = function (event) {
+  document.body.style.cursor = 'default';
+
+  // do something when the mouse moves
+};
 
 window.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') window.location.reload();
@@ -46,12 +51,13 @@ if (mode == 'dark') {
 // textareaContainer.style.display = 'none';
 
 // generate();
-
+// document.body.style.cursor = 'pointer';
 setTimeout(generate, 5);
 
 function generate() {
   // text = textarea.value;
   // startButton.style.display = 'none';
+  document.body.style.cursor = 'none';
   header.style.display = 'block';
   header.style.color = 'white';
   if (text == '') {
@@ -65,8 +71,10 @@ function generate() {
 }
 
 let number = 0;
+let change = 0;
 let hex;
 function myTimer() {
+  document.body.style.cursor = 'none';
   header.textContent = array[count];
   if (array[count] < 5) {
     pace = 4;
@@ -95,7 +103,8 @@ function myTimer() {
   if (mode == 'light') {
     header.style.color = '#000000';
   } else if (mode == 'dark') {
-    number = 11393254 + count / 1000;
+    // change = count/1000;
+    number = 11393254 - change;
     hex = number.toString(16);
     console.log(hex);
     header.style.color = '#' + hex;
