@@ -1,16 +1,26 @@
 window.addEventListener('click', function () {
   window.location.reload();
 });
-window.onmousemove = function (event) {
-  document.body.style.cursor = 'default';
-
-  // do something when the mouse moves
-};
-
 window.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') window.location.reload();
   else console.log('user leaves the page');
 });
+document.body.onkeydown = function (e) {
+  if (e.key == ' ' || e.code == 'Space' || e.keyCode == 32) {
+    document.body.requestFullscreen();
+  }
+  if (e.key == 's' || e.code == 'KeyS' || e.keyCode == 83) {
+    // Stop the program
+    clearInterval(myInterval);
+    document.exitFullscreen();
+    header.style.display = 'none';
+  }
+};
+window.onmousemove = function (event) {
+  document.body.style.cursor = 'default';
+  // do something when the mouse moves
+};
+
 // const textarea = document.querySelector('[data-textarea]');
 // const startButton = document.querySelector('[data-button]');
 let text;
@@ -27,12 +37,6 @@ const body = document.querySelector('[data-body]');
 const header = document.querySelector('[data-header]');
 // const textareaContainer = document.querySelector('.textarea');
 // startButton.addEventListener('click', generate);
-
-document.body.onkeydown = function (e) {
-  if (e.key == ' ' || e.code == 'Space' || e.keyCode == 32) {
-    document.body.requestFullscreen();
-  }
-};
 
 let count = 0;
 let time = 0;
