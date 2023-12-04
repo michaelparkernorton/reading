@@ -1,3 +1,7 @@
+const fast = 50;
+let updateSpeed = fast;
+let speed = fast;
+
 window.addEventListener('click', function () {
   window.location.reload();
 });
@@ -14,6 +18,14 @@ document.body.onkeydown = function (e) {
     clearInterval(myInterval);
     document.exitFullscreen();
     header.style.display = 'none';
+  }
+  if (e.key == 'ArrowLeft' || e.code == 'ArrowLeft' || e.keyCode == 37) {
+    updateSpeed += 1;
+    console.log(updateSpeed);
+  }
+  if (e.key == 'ArrowRight' || e.code == 'ArrowRight' || e.keyCode == 39) {
+    updateSpeed -= 1;
+    console.log(updateSpeed);
   }
 };
 window.onmousemove = function (event) {
@@ -41,10 +53,9 @@ const header = document.querySelector('[data-header]');
 let count = 0;
 let time = 0;
 
-const fast = 50;
-const slow = 900;
+const slow = 800;
 let pace;
-let speed = fast;
+
 let mode = 'dark';
 let myInterval;
 
@@ -100,7 +111,7 @@ function myTimer() {
     clearInterval(myInterval);
     myInterval = setInterval(myTimer, speed);
   } else {
-    speed = fast;
+    speed = updateSpeed;
     clearInterval(myInterval);
     myInterval = setInterval(myTimer, pace * speed);
   }
@@ -110,7 +121,6 @@ function myTimer() {
     // change = count/1000;
     number = 11393254 - change;
     hex = number.toString(16);
-    console.log(hex);
     header.style.color = '#' + hex;
     body.style.backgroundColor = 'black';
   }
