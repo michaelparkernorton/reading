@@ -1,11 +1,33 @@
-let text;
-let array;
+window.addEventListener('visibilitychange', () =>{
+    if (document.visibilityState === 'visible') window.location.reload();
+    else console.log('user leaves the page')
+})
+const textarea = document.querySelector('[data-textarea]');
 const startButton = document.querySelector('[data-button]');
+let text;
+navigator.clipboard
+.readText()
+.then((clipText) => (textarea.textContent = clipText))
+.then(value => {
+  text = value
+  console.log(text);
+});
+
+let array;
 const body = document.querySelector('[data-body]');
 const header = document.querySelector('[data-header]');
-const textarea = document.querySelector('[data-textarea]');
 const textareaContainer = document.querySelector('.textarea');
 startButton.addEventListener('click', generate);
+
+document.body.onkeydown = function(e) {
+  if (e.key == " " ||
+      e.code == "Space" ||      
+      e.keyCode == 32      
+  ) {
+    generate();
+  }
+}
+
 let count = 0;
 let time = 0;
 
@@ -19,15 +41,18 @@ let myInterval;
 if (mode == 'dark') {
   body.style.backgroundColor = 'black';
 }
+textarea.style.display = 'none';
+textareaContainer.style.display = 'none';
 
 function generate() {
   document.body.requestFullscreen();
-  text = textarea.value;
-  textarea.style.display = 'none';
+  // text = textarea.value;
   startButton.style.display = 'none';
-  textareaContainer.style.display = 'none';
   header.style.display = 'block';
   header.style.color = 'white';
+  if (text == '') {
+    text = 'no text in clipboard';
+  }
   text = text.replace(/\r?\n|\r/g, ' ');
   text = text.replace('-', ' ');
   array = text.split(' ');
@@ -77,9 +102,9 @@ function myTimer() {
 
 function exitProgram () {
   document.exitFullscreen();
-  textarea.style.display = 'block';
+  // textarea.style.display = 'block';
   startButton.style.display = 'flex';
-  textareaContainer.style.display = 'flex';
+  // textareaContainer.style.display = 'flex';
   header.style.display = 'none';
 }
 
