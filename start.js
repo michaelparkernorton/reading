@@ -12,7 +12,7 @@ navigator.clipboard
   .readText()
   // .then((clipText) => (textarea.textContent = clipText))
   .then((value) => {
-    if (value == '' || value.includes('\n')) {
+    if (value == '' || value == '\n') {
       paragraph.textContent = 'Please copy something to your clipboard';
     } else {
       paragraph.textContent = value;
